@@ -8,6 +8,8 @@ var otherRouter = require('./routes/other');
 const User = require('./schema/User')
 const Live = require('./schema/Lives')
 
+const server_ip = `108.175.11.224`
+
 require('dotenv').config();
 
 const app = express();
@@ -48,6 +50,7 @@ nms.on('postPublish', (id, streamPath, args) => {
      Live.create({
       live:id,
       user:session.appname,
+      url:`http://${server_ip}:8000/${session.appname}/live.flv`
      })
     })
   } catch (error) {
